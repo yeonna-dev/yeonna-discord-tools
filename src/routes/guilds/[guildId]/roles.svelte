@@ -24,8 +24,13 @@
 
 <script>
   import Role from '../../../components/Role.svelte';
+  import Button from '../../../components/Button.svelte';
+  import Overlay from '../../../components/Overlay.svelte';
+  import CreateRole from '../../../components/CreateRole.svelte';
 
   export let roles;
+
+  let addRoleOverlay;
 </script>
 
 <div class="p-4">
@@ -35,3 +40,11 @@
     </div>
   {/each}
 </div>
+
+<Button class="fixed bottom-0 right-0 m-12" fab on:click={addRoleOverlay.show}>
+  +
+</Button>
+
+<Overlay bind:this={addRoleOverlay}>
+  <CreateRole onClose={addRoleOverlay.hide} />
+</Overlay>
