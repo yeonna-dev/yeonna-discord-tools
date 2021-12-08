@@ -13,8 +13,10 @@ module.exports = {
         bg: {
           DEFAULT: 'var(--color-bg)',
           dark: 'var(--color-bg-dark)',
+          darker: 'var(--color-bg-darker)',
           'dark-hover': 'var(--color-bg-dark-hover)',
           light: 'var(--color-bg-light)',
+          lighter: 'var(--color-bg-lighter)',
         },
         white: 'var(--color-white)',
       },

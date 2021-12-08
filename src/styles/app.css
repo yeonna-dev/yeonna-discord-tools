@@ -11,7 +11,9 @@
   --color-primary-lighter: #f6938a;
   --color-bg: #3f3936;
   --color-bg-light: #4b4440;
-  --color-bg-dark: #2f2b29;
+  --color-bg-lighter: #524d4a;
+  --color-bg-dark: #36302e;
+  --color-bg-darker: #2f2b29;
   --color-bg-dark-hover: #393634;
   --color-white: #eee;
 }

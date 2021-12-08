@@ -1,34 +1,35 @@
 <script>
-  import { page } from '$app/stores';
   import classNames from 'classnames';
 
   import Button from './Button.svelte';
 
-  const menuItems = [
-    {
-      label: 'Home',
-      link: '/',
-      icon: 'fa fa-home fa-lg',
-    },
-    {
-      label: 'Roles',
-      link: '/roles',
-      icon: 'fa fa-user-tag fa-lg',
-    },
-  ];
+  export let items;
+  export let currentRoute;
+  export let temporary = false;
+  export let shown = false;
 
-  $: currentRoute = $page.path;
+  $: isShown = shown || !temporary;
+
+  const hide = () => (shown = false);
 </script>
 
-<nav class="sidebar grid bg-bg-dark">
+<nav
+  class={classNames(
+    $$props.class,
+    'sidebar grid bg-bg-darker',
+    temporary &&
+      'fixed transition duration-300 z-50 md:relative md:translate-x-0',
+    !isShown && '-translate-x-full'
+  )}
+>
   <h1 class="text-center py-6">Yeonna Discord Tools</h1>
-  <ul>
-    {#each menuItems as { label, link, icon }}
-      <a href={link}>
+  <ul class="px-4">
+    {#each items as { label, link, icon }}
+      <a href={link} on:click={hide}>
         <li
           class={classNames(
-            'font-bold px-4 py-3 mx-4',
-            currentRoute === link && 'bg-primary rounded-lg shadow-xl'
+            'font-bold px-4 py-3',
+            link === currentRoute && 'bg-primary rounded-lg shadow-xl'
           )}
           role="button"
         >
@@ -54,6 +55,15 @@
     </h2>
   </div>
 </nav>
+<div
+  class={classNames(
+    'absolute w-full h-full bg-black transition duration-300 z-40',
+    temporary && isShown
+      ? 'pointer-events-auto opacity-40'
+      : 'pointer-events-none opacity-0'
+  )}
+  on:click={hide}
+/>
 
 <style>
   .sidebar {

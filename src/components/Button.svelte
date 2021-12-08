@@ -5,7 +5,7 @@
   export let outlined = false;
   export let text = false;
   export let basic = !fab && !outlined && !text;
-  export let rounded = !text;
+  export let rounded = false;
 </script>
 
 <button
